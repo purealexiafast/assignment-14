@@ -1,27 +1,24 @@
 const router = require("express").Router()
-const { Post, Comment, User } = require("../models")
+const { Post, User } = require("../models")
+const withauth = require("../utils/auth")
 
-router.get("/", async (req, res) => {
+router.get("/", withauth, async (req, res) => {
     try {
         const postData = await Post.findAll({
-            include: [User]
+            include: [User],
+            where: {
+                userId: req.session.userId
+            }
 
 
         })
         const posts = postData.map(post => post.get({ plain: true }))
-        res.render("allposts", { posts })
+        res.render("admin", { posts })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
     }
-})
 
-router.get("/signup", (req, res) => {
-    res.render("signup")
-})
-
-router.get("/login", (req, res) => {
-    res.render("login")
 })
 
 
