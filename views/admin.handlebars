@@ -2,9 +2,20 @@
 
 <div>
     {{#each posts}}
-    <span>
-        {{title}}
-    </span>
+
+    <div>
+        <h3>
+            {{title}}
+        </h3>
+
+        <p>
+            {{body}}
+        </p>
+
+        <p>
+            This post was created by {{user.username}} on {{createdAt}}.
+        </p>
+    </div>
 
     {{/each}}
 

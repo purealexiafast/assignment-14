@@ -10,15 +10,18 @@
 
 <body>
     <header class="display-flex justify-space-between align-center p-2">
-        <h1>
-            Tech Blog
-        </h1>
+        <a href="/">
+            <h1>
+                Tech Blog
+            </h1>
+        </a>
         <nav>
-            {{#if logged_in}}
+            {{#if loggedIn}}
+            <a href="/dashboard/createpost"><button>Create New Post</button></a>
             <button class="btn" id="logout">logout</button>
             {{/if}}
-            {{#unless logged_in}}
-            <a href="/signup"><button>Sign In</button></a>
+            {{#unless loggedIn}}
+            <a href="/signup"><button>Sign Up</button></a>
             <a href="/login"><button>Login</button></a>
             {{/unless}}
         </nav>

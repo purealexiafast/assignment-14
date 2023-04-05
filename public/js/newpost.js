@@ -1,14 +1,14 @@
 const newpostFormHandler = async function (event) { //for new post
     event.preventDefault();
     //select off of html page the values in inputs id's, change variable names
-    const usernameEl = document.querySelector('#username-input-login');
-    const passwordEl = document.querySelector('#password-input-login');
+    const titleEl = document.querySelector('#inputtitle');
+    const textpostEl = document.querySelector('#textpost');
 
-    const response = await fetch('/api/user/login', { //match route the backend
+    const response = await fetch('/api/post', { //match route the backend
         method: 'POST',
         body: JSON.stringify({
-            username: usernameEl.value,
-            password: passwordEl.value,
+            title: titleEl.value,
+            body: textpostEl.value,
         }),
         headers: { 'Content-Type': 'application/json' },
     });

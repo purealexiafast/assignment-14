@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
         })
         const posts = postData.map(post => post.get({ plain: true }))
-        res.render("allposts", { posts })
+        res.render("allposts", { posts, loggedIn: req.session.loggedIn })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -17,10 +17,16 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/signup", (req, res) => {
+    if (req.session.loggedIn) {
+        return res.redirect("/dashboard")
+    }
     res.render("signup")
 })
 
 router.get("/login", (req, res) => {
+    if (req.session.loggedIn) {
+        return res.redirect("/dashboard")
+    }
     res.render("login")
 })
 

@@ -13,7 +13,11 @@ router.get("/", withauth, async (req, res) => {
 
         })
         const posts = postData.map(post => post.get({ plain: true }))
-        res.render("admin", { posts })
+        console.log(posts)
+        res.render("admin", {
+            posts,
+            loggedIn: req.session.loggedIn
+        })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -21,5 +25,10 @@ router.get("/", withauth, async (req, res) => {
 
 })
 
+router.get("/createpost", withauth, async (req, res) => {
+    res.render("newpost", {
+        loggedIn: req.session.loggedIn
+    })
+})
 
 module.exports = router
