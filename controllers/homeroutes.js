@@ -30,5 +30,33 @@ router.get("/login", (req, res) => {
     res.render("login")
 })
 
+router.get("/post/:id", async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                User,
+                {
+                    model: Comment,
+                    include: [User]
+                }
+            ]
+        })
+        if (postData) {
+            const post = postData.get({
+                plain: true
+            })
+            console.log(post)
+            res.render("singlepost", {
+                post
+            })
+        } else {
+            res.status(404).json("This post was not found.")
+        }
+
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 module.exports = router

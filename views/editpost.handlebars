@@ -1,0 +1,18 @@
+<div>
+    <form>
+        <input type="hidden" id="postId" value="{{post.id}}">
+        <input id="postTitle" value="{{post.title}}" />
+
+
+
+        <input id="postBody" value="{{post.body}}" />
+
+        <p>
+            This post was created by {{post.user.username}} on {{post.createdAt}}.
+        </p>
+
+        <button id="updateButton">Update</button>
+        <button id="deleteButton">Delete</button>
+    </form>
+</div>
+<script src="/js/edit.js"></script>

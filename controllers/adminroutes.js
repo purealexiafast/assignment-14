@@ -31,4 +31,33 @@ router.get("/createpost", withauth, async (req, res) => {
     })
 })
 
+router.get("/editpost/:id", withauth, async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                User
+
+            ]
+
+        })
+
+        if (postData) {
+            const post = postData.get({
+                plain: true
+            })
+            console.log(post)
+            res.render("editpost", {
+                post
+            })
+        } else {
+            res.status(404).json("This post was not found.")
+        }
+
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+
 module.exports = router

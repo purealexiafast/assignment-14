@@ -15,4 +15,20 @@ router.post("/", withAuth, async (req, res) => {
     }
 })
 
+router.put("/:id", withAuth, async (req, res) => {
+    try {
+        const updatedPost = await Post.update(req.body, {
+            where: {
+                id: req.params.id
+            }
+        })
+        console.log(updatedPost)
+        res.json(updatedPost)
+
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+})
+
 module.exports = router
