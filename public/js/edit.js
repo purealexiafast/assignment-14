@@ -1,8 +1,8 @@
 const editPost = async function (event) {
     event.preventDefault();
-    const postId = document.querySelector('#postId');
-    const title = document.querySelector('#postTitle');
-    const body = document.querySelector('#postBody');
+    const postId = document.querySelector('#postId').value;
+    const title = document.querySelector('#postTitle').value;
+    const body = document.querySelector('#postBody').value;
 
     const response = await fetch(`/api/post/${postId}`, {
         method: 'PUT',
@@ -13,7 +13,7 @@ const editPost = async function (event) {
     if (response.ok) {
         document.location.replace('/dashboard');
     } else {
-        alert('Failed to login');
+        alert('Failed to edit post');
     }
 };
 

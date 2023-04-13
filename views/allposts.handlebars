@@ -1,19 +1,19 @@
 <div>
-    {{#each posts}}
+    {{#each posts as |post|}}
 
     <div>
-        <a href="/post/{{id}}">
+        <a href="/post/{{post.id}}">
             <h3>
-                {{title}}
+                {{post.title}}
             </h3>
         </a>
 
         <p>
-            {{body}}
+            {{post.body}}
         </p>
 
         <p>
-            This post was created by {{user.username}} on {{createdAt}}.
+            This post was created by {{post.user.username}} on {{post.createdAt}}.
         </p>
     </div>
 

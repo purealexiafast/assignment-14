@@ -1,13 +1,31 @@
 <div>
     <h3>
-        {{title}}
+        {{post.title}}
     </h3>
 
     <p>
-        {{body}}
+        {{post.body}}
     </p>
 
+
     <p>
-        This post was created by {{user.username}} on {{createdAt}}.
+        This post was created by {{post.user.username}} on {{post.createdAt}}.
     </p>
+
+    <h3>Leave A Comment</h3>
+    <form id="newcomment">
+        <input id="postId" type="hidden" value="{{post.id}}" />
+        <input type="text" id="commenttext" />
+        <button tyep="submit">Submit</button>
+    </form>
+
+    {{#each post.Comment as |comment|}}
+    <div>
+        <p>{{comment.body}}</p>
+    </div>
+
+    {{/each}}
+
 </div>
+
+<script src="/js/newcomment.js"></script>

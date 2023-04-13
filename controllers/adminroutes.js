@@ -47,7 +47,8 @@ router.get("/editpost/:id", withauth, async (req, res) => {
             })
             console.log(post)
             res.render("editpost", {
-                post
+                post,
+                loggedIn: req.session.loggedIn
             })
         } else {
             res.status(404).json("This post was not found.")
