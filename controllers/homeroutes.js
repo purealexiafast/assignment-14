@@ -47,9 +47,10 @@ router.get("/post/:id", async (req, res) => {
             const post = postData.get({
                 plain: true
             })
-            console.log(post)
+            console.log("Single Post Screen Data", post)
             res.render("singlepost", {
-                post
+                post,
+                loggedIn: req.session.loggedIn
             })
         } else {
             res.status(404).json("This post was not found.")

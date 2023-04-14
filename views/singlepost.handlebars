@@ -7,7 +7,7 @@
         {{post.body}}
     </p>
 
-
+    {{log "Post" post}}
     <p>
         This post was created by {{post.user.username}} on {{post.createdAt}}.
     </p>
@@ -19,8 +19,9 @@
         <button tyep="submit">Submit</button>
     </form>
 
-    {{#each post.Comment as |comment|}}
+    {{#each post.Comments as |comment|}}
     <div>
+        <p>This comment was created by {{comment.user.username}} on {{comment.createdAt}} </p>
         <p>{{comment.body}}</p>
     </div>
 

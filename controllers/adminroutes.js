@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const { Post, User } = require("../models")
+const { Post, User, Comment } = require("../models")
 const withauth = require("../utils/auth")
 
 router.get("/", withauth, async (req, res) => {
@@ -35,7 +35,11 @@ router.get("/editpost/:id", withauth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
-                User
+                User,
+                {
+                    model: Comment,
+                    include: [User]
+                }
 
             ]
 

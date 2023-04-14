@@ -8,8 +8,8 @@ router.post("/", async (req, res) => { //debug
             req.session.userId = newUser.id
             req.session.userName = newUser.userName
             req.session.loggedIn = true
+            res.json(newUser)
         })
-        res.json(newUser)
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
